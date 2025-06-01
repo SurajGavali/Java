@@ -1,4 +1,4 @@
-# Consumer in Java
+# Consumer
 
 A **Consumer** is a functional interface in Java (introduced in Java 8) that represents an operation that takes a single input argument and returns no result. It is part of the `java.util.function` package and is often used for operations that perform actions, such as printing or modifying objects, without returning a value.
 

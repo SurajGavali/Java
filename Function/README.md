@@ -1,4 +1,4 @@
-# Functional Interface in Java
+# Functional Interface
 
 A **Functional Interface** is an interface that contains exactly one abstract method. They are introduced in Java 8 to support lambda expressions and functional programming.
 

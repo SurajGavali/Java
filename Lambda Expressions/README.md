@@ -1,4 +1,4 @@
-# 📌 Lambda Expressions in Java
+# 📌 Lambda Expressions
 
 Lambda expressions provide a clear and concise way to implement **functional interfaces** (interfaces with only one abstract method). They allow writing code that’s more readable and concise, especially in scenarios like using threads or passing behavior as parameters.
 
