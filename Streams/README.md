@@ -334,3 +334,80 @@ private static Long calculateFactorial(int number) {
 ```
 
 ---
+
+### More Examples and Notes
+
+- **Collecting Names by Their Lengths:**
+  - Use `Collectors.groupingBy` to group names by their length. This creates a map where the key is the length and the value is a list of names with that length.
+  - Example:
+    ```java
+    mixedNames.stream()
+        .collect(Collectors.groupingBy(String::length, Collectors.toList()))
+        .forEach((length, namesList) -> 
+            System.out.println("Length: " + length + ", Names: " + namesList));
+    ```
+  - Output: `Length: 3, Names: [Bob]` (for example).
+
+- **Counting Word Occurrences in a String:**
+  - Split a sentence into words and use `Collectors.groupingBy` with `Collectors.counting()` to count how many times each word appears.
+  - Example:
+    ```java
+    String text = "Java Streams are powerful. Streams can be used for parallel processing. Stream API is flexible and efficient.";
+    Arrays.stream(text.split(" "))
+        .collect(Collectors.groupingBy(word -> word, Collectors.counting()))
+        .forEach((word, wordcount) -> System.out.println("Word: " + word + ", Count: " + wordcount));
+    ```
+
+- **Partitioning Numbers into Even and Odd:**
+  - Use `Collectors.partitioningBy` to split a list of numbers into even and odd groups.
+  - Example:
+    ```java
+    List<Integer> numbersList2 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    System.out.println(numbersList2.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0)));
+    ```
+  - Output: `{false=[1, 3, 5, 7, 9], true=[2, 4, 6, 8, 10]}`
+
+- **Summing Values in a Map:**
+  - Use `Collectors.summingInt` to sum all values in a collection, such as prices in a map.
+  - Example:
+    ```java
+    Map<String, Integer> itemPrices = new HashMap<>();
+    itemPrices.put("Apple", 100);
+    itemPrices.put("Banana", 50);
+    itemPrices.put("Cherry", 75);
+    System.out.println(itemPrices.values().stream().collect(Collectors.summingInt(x -> x)));
+    ```
+
+- **Creating a Map from a List:**
+  - Use `Collectors.toMap` to create a map from a list, mapping each item to a property (like its length).
+  - Example:
+    ```java
+    List<String> items = Arrays.asList("Apple", "Banana", "Cherry");
+    System.out.println(items.stream().collect(Collectors.toMap(x -> x, x -> x.toString().length())));
+    ```
+
+- **Finding Number of Occurrences in a List:**
+  - Use `Collectors.toMap` with a merge function to count how many times each element appears in a list.
+  - Example:
+    ```java
+    List<String> wordsList = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
+    System.out.println(wordsList.stream().collect(Collectors.toMap(k -> k, v -> 1, (x, y) -> x + y)));
+    ```
+  - Output: `{orange=1, banana=2, apple=3}`
+
+- **Primitive Streams (IntStream, etc.):**
+  - Java provides special streams for primitive types: `IntStream`, `LongStream`, and `DoubleStream`.
+  - `IntStream.range(1, 11)` creates a stream of integers from 1 to 10.
+  - `.boxed()` converts a primitive stream to a stream of wrapper objects (e.g., `Stream<Integer>`).
+  - `IntStream.of(1, 2, 3, 4, 5)` creates a stream from specific values.
+  - `new Random().ints(10, 1, 100)` generates 10 random integers between 1 and 100.
+  - Primitive streams are efficient for processing large amounts of numeric data.
+  - Example:
+    ```java
+    IntStream intStream = IntStream.range(1, 11); // 1 to 10
+    intStream.boxed().forEach(System.out::println); // Print each integer
+    IntStream.of(1, 2, 3, 4, 5);
+    new Random().ints(10, 1, 100).forEach(System.out::println); // 10 random ints
+    ```
+
+---
