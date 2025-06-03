@@ -107,6 +107,16 @@ public class MyStreamExample {
                                                   .flatMap(Collection::stream)
                                                   .collect(Collectors.toList());
         System.out.println("FlatMapped names: " + flatMappedNames);
+
+        List<String> sentences = Arrays.asList(
+            "Java Streams are powerful",
+            "Streams can be used for parallel processing",
+            "Stream API is flexible and efficient"
+        );
+        List<String> words = sentences.stream()
+                                      .flatMap(sentence -> Arrays.stream(sentence.split(" ")))
+                                      .collect(Collectors.toList());
+        System.out.println("Words from sentences: " + words);
         // 9. AnyMatch, AllMatch, NoneMatch operations
         boolean anyMatch = mixedNames.stream().anyMatch(name -> name.startsWith("A"));
         boolean allMatch = mixedNames.stream().allMatch(name -> name.length() > 2);
@@ -270,6 +280,9 @@ public class MyStreamExample {
         System.out.print("Names: ");
         mixedNames.stream().forEach(name -> System.out.print(name + " "));
         System.out.println();
+
+        // forEachOrdered operation
+        // forEachOrdered is used to maintain the order of elements in the stream when processing them in parallel.
         // 4. ToArray operation
         String[] namesArray = mixedNames.stream()
                                         .toArray(String[]::new);
@@ -318,7 +331,7 @@ public class MyStreamExample {
         // Factorial calculation using Stream API
 
         List<Integer> factorialNumbers = Stream.iterate(1, n -> n + 1)
-                                                .limit(200000) // Calculate factorial for numbers 1 to 10
+                                                .limit(2000) // Calculate factorial for numbers 1 to 10
                                                 .collect(Collectors.toList());
 
         long startTime = System.currentTimeMillis();
@@ -327,6 +340,10 @@ public class MyStreamExample {
         long endTime = System.currentTimeMillis();
         System.out.println("Time taken to calculate factorials using normal stream : " + (endTime - startTime) + " ms");
 
+        // Parallel Stream for factorial calculation
+        // Parallelel streams are most effective when the task is CPU-intensive and can be divided into smaller tasks that can be executed concurrently.
+        // they may add overhead for tasks that are not CPU-intensive or that involve a lot of I/O operations.
+
         startTime = System.currentTimeMillis();
         List<Long> parallelFactorialList = factorialNumbers.parallelStream()
                                                             .map(MyStreamExample::calculateFactorial)
@@ -334,6 +351,111 @@ public class MyStreamExample {
         endTime = System.currentTimeMillis();
 
         System.out.println("Time taken to calculate factorials using parallel stream : " + (endTime - startTime) + " ms");
+
+        // Parallel streams can not be run when task is not independent of each other, for example, if we want to calculate factorial of a number using previous factorials, then we can not use parallel stream.
+
+        // But if we want to do some sequential operation after calculating factorial using parallel stream we can convert the parallel stream to sequential stream using sequential() method.
+
+        List<Long> sequentialFactorialList = parallelFactorialList.parallelStream()
+                                                                  .sequential()
+                                                                  .collect(Collectors.toList());
+        // System.out.println("Sequential factorial list: " + sequentialFactorialList);
+
+        // Collectors
+
+        // 1. toList
+        List<String> collectedList = mixedNames.stream()
+                                               .collect(Collectors.toList());
+        System.out.println("Collected list: " + collectedList);
+        // 2. toSet
+        Set<String> collectedSet = mixedNames.stream()
+                                             .collect(Collectors.toSet());
+        System.out.println("Collected set: " + collectedSet);
+        // 3. Collecting to a specific collection type
+        List<String> collectedArrayList = mixedNames.stream()
+                                                    .collect(Collectors.toCollection(ArrayList::new));
+        System.out.println("Collected ArrayList: " + collectedArrayList);
+        List<String> collectedLinkedList = mixedNames.stream()
+                                                      .collect(Collectors.toCollection(LinkedList::new));
+        System.out.println("Collected LinkedList: " + collectedLinkedList);
+        List<String> collectedVector = mixedNames.stream()
+                                                  .collect(Collectors.toCollection(Vector::new));
+
+        List<String> collectedStack = mixedNames.stream()
+                                                  .collect(Collectors.toCollection(Stack::new));
+        System.out.println("Collected Vector: " + collectedVector);
+        System.out.println("Collected Stack: " + collectedStack);
+
+        ArrayDeque<String> collectedQueue = mixedNames.stream()
+                                                  .collect(Collectors.toCollection(ArrayDeque::new));
+
+
+        // 4. Joining Strings
+        String joinedNamesString = mixedNames.stream()
+                                             .collect(Collectors.joining(", ", "Names: ", "."));
+        System.out.println("Joined names: " + joinedNamesString);
+
+        // 5. Summarizing statistics
+        List<Integer> numbersStastics = Arrays.asList(1, 2, 3, 4, 5);
+        IntSummaryStatistics statistics = numbersStastics.stream()
+                                                        .collect(Collectors.summarizingInt(Integer::intValue));
+        
+        System.out.println("Count: " + statistics.getCount());
+        System.out.println("Sum: " + statistics.getSum());
+        System.out.println("Min: " + statistics.getMin());
+        System.out.println("Max: " + statistics.getMax());
+        System.out.println("Average: " + statistics.getAverage());
+                                                          
+        // 6. Grouping by a property
+        Map<Integer, List<String>> groupedByLengthMap = mixedNames.stream()
+                                                                  .collect(Collectors.groupingBy(String::length));
+        System.out.println("Grouped by length: " + groupedByLengthMap);
+
+        // 7. Downstream operations
+        Map<Integer, Long> lengthCountMap = mixedNames.stream()
+                                                      .collect(Collectors.groupingBy(String::length, Collectors.counting()));
+        System.out.println("Length count map: " + lengthCountMap);
+
+        // 8. Partitioning by a condition
+        Map<Boolean, List<String>> partitionedByLengthMap = mixedNames.stream()
+                                                                      .collect(Collectors.partitioningBy(name -> name.length() > 3));
+        System.out.println("Partitioned by length > 3: " + partitionedByLengthMap);
+
+        // 9. Mapping and Collecting
+        List<String> mappedNamesList = mixedNames.stream().collect(Collectors.mapping(
+            name -> "Name: " + name,
+            Collectors.toList()
+        ));
+        System.out.println("Mapped names: " + mappedNamesList);
+
+        // Example 1 : Collecting names by their lengths
+        mixedNames.stream()
+                .collect(Collectors.groupingBy(String::length, Collectors.toList()))
+                .forEach((length, namesList) -> 
+                    System.out.println("Length: " + length + ", Names: " + namesList));
+        
+        // Example 2 : Counting word occurrences in String
+
+        String text = "Java Streams are powerful. Streams can be used for parallel processing. Stream API is flexible and efficient.";
+
+        Arrays.stream(text.split(" ")).collect(Collectors.groupingBy(word -> word, Collectors.counting()))
+                .forEach((word, wordcount) -> System.out.println("Word: " + word + ", Count: " + wordcount));
+        
+        // example 3 : Partitionaning number into even and odd numbers
+        List<Integer> numbersList2 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        System.out.println(numbersList2.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0)));
+
+        // Example 4 : Summing Values in Map
+        Map<String, Integer> itemPrices = new HashMap<>();
+        itemPrices.put("Apple", 100);
+        itemPrices.put("Banana", 50);
+        itemPrices.put("Cherry", 75);
+        System.out.println(itemPrices.values().stream().collect(Collectors.summingInt(x -> x)));
+
+        // Example 5 : Creating a Map from a List
+        List<String> items = Arrays.asList("Apple", "Banana", "Cherry");
+        System.out.println(items.stream().collect(Collectors.toMap(x -> x, x -> x.toString().length())));
     }
 
     private static Long calculateFactorial(int number) {
