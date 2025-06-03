@@ -456,6 +456,24 @@ public class MyStreamExample {
         // Example 5 : Creating a Map from a List
         List<String> items = Arrays.asList("Apple", "Banana", "Cherry");
         System.out.println(items.stream().collect(Collectors.toMap(x -> x, x -> x.toString().length())));
+
+        // Exxample 6 : Finding number of occurences in a list
+
+        List<String> wordsList = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
+        System.out.println(wordsList.stream().collect(Collectors.toMap(k -> k, v -> 1, (x,y) -> x + y)));
+
+        // Premitive Streams Example
+        // Used for premitive data structures like int, long, double etc.
+
+        IntStream intStream = IntStream.range(1, 11); // Creates a stream of integers from 1 to 10
+        intStream.boxed() // Converts IntStream to Stream<Integer>
+                .forEach(System.out::println); // Prints each integer in the stream
+        
+        IntStream.of( 1, 2, 3, 4, 5);
+
+        new Random().ints(10, 1, 100) // Generates a stream of 10 random integers between 1 and 100
+                .forEach(System.out::println); // Prints each random integer
+
     }
 
     private static Long calculateFactorial(int number) {
