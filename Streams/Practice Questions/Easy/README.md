@@ -1,57 +1,63 @@
-📌 Java Stream API Interview Questions (Easy Level)
+# 📌 Java Stream API Interview Questions (Easy Level)
 
-📖 Basics & Definitions
-	1.	What is the Java Stream API?
-	2.	How does the Stream API differ from a Collection?
-	3.	Can you explain what a stream pipeline is?
-	4.	What is the difference between intermediate and terminal operations in streams?
-	5.	What is the difference between a sequential stream and a parallel stream?
+## 📖 Basics & Definitions
 
-📖 Stream Creation
-	6.	How do you create a stream from a collection?
-	7.	How do you create a stream from an array?
-	8.	How can you create an empty stream?
-	9.	How can you create a stream using the Stream.of() method?
-	10.	How can you create a stream of primitive types (IntStream, LongStream, DoubleStream)?
+1. **What is the Java Stream API?**
+2. **How does the Stream API differ from a Collection?**
+3. **Can you explain what a stream pipeline is?**
+4. **What is the difference between intermediate and terminal operations in streams?**
+5. **What is the difference between a sequential stream and a parallel stream?**
 
-📖 Intermediate Operations
-	11.	What does the filter() operation do in a stream?
-	12.	How does the map() operation work in a stream?
-	13.	What’s the difference between map() and flatMap()?
-	14.	How does distinct() work on a stream?
-	15.	How does sorted() work on a stream? How can you sort custom objects?
-	16.	How does the limit() operation work?
-	17.	What does the skip() operation do?
-	18.	How can you remove duplicates from a stream?
+## 📖 Stream Creation
 
-📖 Terminal Operations
-	19.	What does the collect() operation do?
-	20.	How can you convert a stream to a list or set using collect()?
-	21.	How does the forEach() terminal operation work?
-	22.	What’s the difference between forEach() and forEachOrdered()?
-	23.	How can you use count() on a stream?
-	24.	How can you get the minimum or maximum value from a stream?
-	25.	How does the reduce() method work? Can you give a simple example?
-	26.	How does anyMatch(), allMatch(), and noneMatch() work?
-	27.	How does findFirst() and findAny() work?
+6. **How do you create a stream from a collection?**
+7. **How do you create a stream from an array?**
+8. **How can you create an empty stream?**
+9. **How can you create a stream using the Stream.of() method?**
+10. **How can you create a stream of primitive types (IntStream, LongStream, DoubleStream)?**
 
-📖 Collectors
-	28.	How do you use Collectors.toList()?
-	29.	How do you use Collectors.toSet()?
-	30.	How do you use Collectors.toMap()?
-	31.	How can you use Collectors.joining() to concatenate strings?
-	32.	What is the purpose of Collectors.groupingBy()? Give a simple example.
+## 📖 Intermediate Operations
 
-📖 Advanced (but still easy-level) Topics
-	33.	What is a short-circuiting operation? Give examples.
-	34.	How can you parallelize a stream? What’s the benefit?
-	35.	Is a stream reusable? Why or why not?
-	36.	How can you handle exceptions inside stream operations?
-	37.	How can you debug a stream pipeline?
-	38.	What’s the difference between a stream and an iterator?
-	39.	How does lazy evaluation work in streams?
-	40.	How does a stream close? Can you close a stream explicitly?
-	41.	Can you call a terminal operation twice on the same stream?
+11. **What does the filter() operation do in a stream?**
+12. **How does the map() operation work in a stream?**
+13. **What’s the difference between map() and flatMap()?**
+14. **How does distinct() work on a stream?**
+15. **How does sorted() work on a stream? How can you sort custom objects?**
+16. **How does the limit() operation work?**
+17. **What does the skip() operation do?**
+18. **How can you remove duplicates from a stream?**
+
+## 📖 Terminal Operations
+
+19. **What does the collect() operation do?**
+20. **How can you convert a stream to a list or set using collect()?**
+21. **How does the forEach() terminal operation work?**
+22. **What’s the difference between forEach() and forEachOrdered()?**
+23. **How can you use count() on a stream?**
+24. **How can you get the minimum or maximum value from a stream?**
+25. **How does the reduce() method work? Can you give a simple example?**
+26. **How does anyMatch(), allMatch(), and noneMatch() work?**
+27. **How does findFirst() and findAny() work?**
+
+## 📖 Collectors
+
+28. **How do you use Collectors.toList()?**
+29. **How do you use Collectors.toSet()?**
+30. **How do you use Collectors.toMap()?**
+31. **How can you use Collectors.joining() to concatenate strings?**
+32. **What is the purpose of Collectors.groupingBy()? Give a simple example.**
+
+## 📖 Advanced (but still easy-level) Topics
+
+33. **What is a short-circuiting operation? Give examples.**
+34. **How can you parallelize a stream? What’s the benefit?**
+35. **Is a stream reusable? Why or why not?**
+36. **How can you handle exceptions inside stream operations?**
+37. **How can you debug a stream pipeline?**
+38. **What’s the difference between a stream and an iterator?**
+39. **How does lazy evaluation work in streams?**
+40. **How does a stream close? Can you close a stream explicitly?**
+41. **Can you call a terminal operation twice on the same stream?**
 
 ---
 
