@@ -398,3 +398,27 @@
       ```
 
 ---
+
+# 🚀 Java Stream API — Easy-Level Coding Problems
+
+## 🔥 Coding Problems on Java Stream API
+
+### 🟢 Stream Creation
+
+#### Problem 1: Print All Elements
+
+Problem Statement:
+Given a list of integers, return a list containing all the elements.
+
+Method Signature:
+
+```Java
+List<Integer> getAllElements(List<Integer> numbers);
+```
+
+Example:
+
+```Bash
+Input: numbers = [1, 2, 3, 4, 5]
+Output: [1, 2, 3, 4, 5]
+```

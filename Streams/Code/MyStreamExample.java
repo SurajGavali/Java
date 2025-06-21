@@ -7,6 +7,7 @@ public class MyStreamExample {
         // source, intermediate, and terminal operations
         List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");
 
+
         // Using Stream to filter and print names that start with 'A'
                 
         System.out.println("Names starting with 'D': " + 
@@ -264,7 +265,7 @@ public class MyStreamExample {
                                                                     Collectors.toMap(name -> name, String::length),
                                                                     Collections::unmodifiableMap
                                                                 ));
-        
+
 
 
         // Terminal operations
