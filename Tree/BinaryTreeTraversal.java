@@ -1,6 +1,12 @@
 package Respositories.Java.Tree;
 
+import java.util.*;
+
 public class BinaryTreeTraversal {
+
+    static List<Integer> preOrderTraversalList = new ArrayList<>();
+    static List<Integer> postOrderTraversalList = new ArrayList<>();
+    static List<Integer> inOrderTraversalList = new ArrayList<>();
 
     public static class TreeNode {
         int val;
@@ -29,8 +35,17 @@ public class BinaryTreeTraversal {
     }
 
     public static void traverseTree(TreeNode root){
-        // Print the tree in a visually structured format
-        printTree(root, "", false);
+        // Preorder traversal: root, left, right
+        if (root == null) return;
+
+        preOrderTraversalList.add(root.val); // Pre Order Traversing
+        // System.out.println(root.val); // Commented out: just traversing
+        traverseTree(root.left);
+
+        inOrderTraversalList.add(root.val); // // In Order Traversing
+        traverseTree(root.right);
+
+        postOrderTraversalList.add(root.val); // Post Order Traversing        
     }
 
     public static void main(String[] args) {
@@ -44,6 +59,9 @@ public class BinaryTreeTraversal {
         );
 
         traverseTree(root);
+        System.out.println(preOrderTraversalList);
+        System.out.println(postOrderTraversalList);
+        System.out.println(inOrderTraversalList);
     }
     
 }
