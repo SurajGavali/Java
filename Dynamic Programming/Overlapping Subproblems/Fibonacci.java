@@ -1,7 +1,17 @@
 import java.util.Arrays;
 
 public class Fibonacci {
-
+    /*
+     * Time and Space Complexity:
+     *
+     * Brute Force Recursive Approach:
+     *   - Time Complexity: O(2^n) (exponential, due to repeated subproblems)
+     *   - Space Complexity: O(n) (recursion stack depth)
+     *
+     * Dynamic Programming with Memoization:
+     *   - Time Complexity: O(n) (each subproblem solved once)
+     *   - Space Complexity: O(n) (for dp array + recursion stack)
+     */
     // In this problem, we are repeatedly calculating values like fibonacci(2) in different branches of the recursion tree.
     // This repetition is known as "Overlapping Subproblems".
     // Overlapping subproblems occur when a recursive algorithm solves the same subproblem multiple times.
